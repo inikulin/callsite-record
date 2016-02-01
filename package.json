@@ -1,0 +1,38 @@
+{
+  "name": "source-frame",
+  "version": "1.0.0",
+  "description": "Create fancy source code frames.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "eslint index.js test && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inikulin/source-frame.git"
+  },
+  "keywords": [
+    "source",
+    "code",
+    "frame",
+    "stack",
+    "callstack",
+    "call",
+    "source-code"
+  ],
+  "author": "Ivan Nikulin (ifaaan@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inikulin/source-frame/issues"
+  },
+  "homepage": "https://github.com/inikulin/source-frame#readme",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "mocha": "^2.4.5"
+  }
+}
