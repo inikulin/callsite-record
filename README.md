@@ -1,12 +1,12 @@
-# source-frame
-[![Build Status](https://api.travis-ci.org/inikulin/source-frame.svg)](https://travis-ci.org/inikulin/source-frame)
+# callsite-frame
+[![Build Status](https://api.travis-ci.org/inikulin/callsite-frame.svg)](https://travis-ci.org/inikulin/callsite-frame)
 
-*Create fancy source code frames.*
+*Create fancy call site source code frames..*
 
 
 ## Install
 ```
-npm install source-frame
+npm install callsite-frame
 ```
 
 ## Usage

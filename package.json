@@ -1,7 +1,7 @@
 {
-  "name": "source-frame",
+  "name": "callsite-frame",
   "version": "1.0.0",
-  "description": "Create fancy source code frames.",
+  "description": "Create fancy call site source code frames.",
   "main": "index.js",
   "directories": {
     "test": "test"
