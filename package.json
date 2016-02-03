@@ -34,5 +34,9 @@
   "devDependencies": {
     "eslint": "^1.10.3",
     "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "callsite": "^1.0.0",
+    "js-tokens": "^1.0.2"
   }
 }
