@@ -4,9 +4,20 @@ var jsTokensRe     = require('js-tokens');
 var leftPad        = require('left-pad');
 var isReservedWord = require('esutils').keyword.isReservedWordES6;
 
-function getFrameLines (filename, baseLineIdx, frameSize) {
-    frameSize = frameSize || 2;
+// Decorators
+exports.decorators = {
+    default: {
+        line: function (num, base, src) {
+            var prefix = base ? '>' : ' ';
 
+            return prefix + num + ' |' + src + '\n';
+        }
+    }
+};
+
+
+// Internals
+function getFrameLines (filename, baseLineIdx, frameSize) {
     var content          = readFile(filename);
     var lines            = content.split(/\r?\n/g);
     var startLineIdx     = Math.max(0, baseLineIdx - frameSize);
@@ -41,7 +52,8 @@ function highlight (src, decorator) {
 }
 
 function createSourceFrame (filename, baseLineIdx, decorator, frameSize) {
-    // TODO decorator
+    decorator = decorator || exports.decorators.default;
+    frameSize = frameSize || 2;
 
     return getFrameLines(filename, baseLineIdx, frameSize)
         .reduce(function (sourceFrame, line) {
@@ -50,16 +62,15 @@ function createSourceFrame (filename, baseLineIdx, decorator, frameSize) {
 }
 
 
+// API
 exports.forFn = function (fnName, decorator, frameSize) {
     // TODO
 };
 
-exports.forMember = function (objName, fnName, decorator, frameSize) {
+exports.forMemberFn = function (typeName, fnName, decorator, frameSize) {
     // TODO
 };
 
 exports.forStackFrame = function (idx, decorator, frameSize) {
     // TODO
 };
-
-
