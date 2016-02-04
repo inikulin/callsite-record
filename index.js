@@ -71,6 +71,14 @@ function createSourceFrame (filename, baseLineIdx, decorator, frameSize) {
         }, '');
 }
 
+function findClosestNonNativeAncestorFrame (stackFrames, curIdx) {
+    for (var i = curIdx + 1; i < stackFrames.length; i++) {
+        if (!stackFrames[i].isNative)
+            return stackFrames[i];
+    }
+
+    return null;
+}
 
 // API
 module.exports = function (fnName, typeName, decorator, frameSize) {
@@ -84,11 +92,20 @@ module.exports = function (fnName, typeName, decorator, frameSize) {
 
     for (var i = 0; i < stackFrames.length; i++) {
         var frame        = stackFrames[i];
-        var nextFrame    = stackFrames[i + 1];
         var isMemberCall = typeName && frame.getMethodName() === fnName && frame.getTypeName() === typeName;
 
-        if ((isMemberCall || frame.getFunctionName() === fnName) && nextFrame)
-            return createSourceFrame(nextFrame.getFileName(), nextFrame.getLineNumber() - 1, decorator, frameSize);
+        if (isMemberCall || frame.getFunctionName() === fnName) {
+            var ancestorFrame = findClosestNonNativeAncestorFrame(stackFrames, i);
+
+            if (ancestorFrame) {
+                var filename = ancestorFrame.getFileName();
+                var lineNum  = ancestorFrame.getLineNumber() - 1;
+
+                return createSourceFrame(filename, lineNum, decorator, frameSize);
+            }
+
+            return null;
+        }
     }
 
     return null;
