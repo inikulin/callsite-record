@@ -102,12 +102,13 @@ function getFrameLines (filename, baseLineIdx, decorator, frameSize) {
 
 function createSourceFrame (filename, baseLineIdx, decorator, frameSize) {
     decorator = decorator || decorators.default;
-    frameSize = frameSize || 2;
+    frameSize = frameSize || 5;
 
     return getFrameLines(filename, baseLineIdx, decorator, frameSize)
         .reduce(function (sourceFrame, line) {
             return sourceFrame + decorator.line(line.num, line.base, line.src);
-        }, '');
+        }, '')
+        .replace(/\n$/, '');
 }
 
 function findClosestNonNativeAncestorFrame (stackFrames, curIdx) {
