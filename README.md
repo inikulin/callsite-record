@@ -1,12 +1,12 @@
-# callsite-frame
-[![Build Status](https://api.travis-ci.org/inikulin/callsite-frame.svg)](https://travis-ci.org/inikulin/callsite-frame)
+# callsite-view
+[![Build Status](https://api.travis-ci.org/inikulin/callsite-view.svg)](https://travis-ci.org/inikulin/callsite-view)
 
-*Create fancy call site source code frames..*
+*Create fancy function call site views for the logging purposes.*
 
 
 ## Install
 ```
-npm install callsite-frame
+npm install callsite-view
 ```
 
 ## Usage

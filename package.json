@@ -1,7 +1,7 @@
 {
-  "name": "callsite-frame",
+  "name": "callsite-view",
   "version": "1.0.0",
-  "description": "Create fancy call site source code frames.",
+  "description": "Create fancy function call site views for the logging purposes.",
   "main": "index.js",
   "directories": {
     "test": "test"
