@@ -2,6 +2,7 @@ var readFile       = require('fs').readFileSync;
 var callsite       = require('callsite');
 var jsTokensRe     = require('js-tokens');
 var leftPad        = require('left-pad');
+var chalk          = require('chalk');
 var isReservedWord = require('esutils').keyword.isReservedWordES6;
 
 var NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
@@ -38,20 +39,39 @@ module.exports = function callsiteFrame (fnName, typeName, decorator, frameSize)
 };
 
 // Decorators
+function plainTextLineDecorator (num, base, src) {
+    var prefix = base ? ' > ' : '   ';
+
+    return prefix + num + ' |' + src + '\n';
+}
+
+
 var decorators = module.exports.decorators = {
     default: {
-        line: function (num, base, src) {
-            var prefix = base ? ' > ' : '   ';
+        line: plainTextLineDecorator
+    },
 
-            return prefix + num + ' |' + src + '\n';
-        }
+    color: {
+        string:     chalk.green,
+        punctuator: chalk.grey,
+        keyword:    chalk.cyan,
+        number:     chalk.magenta,
+        regex:      chalk.magenta,
+        comment:    chalk.yellow,
+        invalid:    chalk.inverse,
+        line:       plainTextLineDecorator
     }
 };
 
 // Internals
 function highlight (src, decorator) {
     return src.replace(jsTokensRe, function (value) {
-        var token = jsTokensRe.matchToToken.apply(jsTokensRe, arguments);
+        var match = [];
+
+        for (var i = 0; i < arguments.length; i++)
+            match.push(arguments[i]);
+
+        var token = jsTokensRe.matchToToken(match);
 
         if (token.type === 'name' && isReservedWord(value, true))
             token.type = 'keyword';

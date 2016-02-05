@@ -103,7 +103,7 @@ module.exports = function createFrames (decorator, frameSize) {
         regularFunc2();
     })();
 
-    [1].forEach(regularFunc2);
+    ['test'].forEach(regularFunc2);
 
     return frames;
 };

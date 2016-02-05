@@ -63,7 +63,7 @@ it('Should create call site frames', function () {
         ' > 103 |        regularFunc2();\n' +
         '   104 |    })();\n' +
         '   105 |\n' +
-        '   106 |    [1].forEach(regularFunc2);\n' +
+        '   106 |    [\'test\'].forEach(regularFunc2);\n' +
         '   107 |\n' +
         '   108 |    return frames;',
 
@@ -73,7 +73,7 @@ it('Should create call site frames', function () {
         '   103 |        regularFunc2();\n' +
         '   104 |    })();\n' +
         '   105 |\n' +
-        ' > 106 |    [1].forEach(regularFunc2);\n' +
+        ' > 106 |    [\'test\'].forEach(regularFunc2);\n' +
         '   107 |\n' +
         '   108 |    return frames;\n' +
         '   109 |};\n' +
