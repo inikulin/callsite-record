@@ -1,6 +1,6 @@
 'use strict';
 
-var callFrame = require('../');
+var callsiteFrame = require('../');
 
 module.exports = function createFrames (decorator, frameSize) {
     // -------------
@@ -33,7 +33,7 @@ module.exports = function createFrames (decorator, frameSize) {
     var frames = [];
 
     function addFrame (fnName, typeName) {
-        frames.push(callFrame(fnName, typeName, decorator, frameSize));
+        frames.push(callsiteFrame(fnName, typeName, decorator, frameSize));
     }
 
     // NOTE: add blank lines to reach 3-digit line numbers
@@ -99,7 +99,9 @@ module.exports = function createFrames (decorator, frameSize) {
 
     obj.func();
 
-    regularFunc2();
+    (function () {
+        regularFunc2();
+    })();
 
     [1].forEach(regularFunc2);
 
