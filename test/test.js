@@ -1,83 +1,14 @@
-var assert        = require('assert');
-var createFrames  = require('./create-frames');
+var assert          = require('assert');
+var Promise         = require('pinkie-promise');
+var renderers       = require('..').renderers;
+var createFrames    = require('./data/create-frames');
+var expectedNoColor = require('./data/expected-no-color');
 
-it('Should create call site frames', function () {
-    assert.deepEqual(createFrames(), [
-        '    90 |    // ***************************************************\n' +
-        '    91 |    // ***************************************************\n' +
-        '    92 |\n' +
-        '    93 |    /* Multiline\n' +
-        '    94 |         comment*/\n' +
-        ' >  95 |    var testClass = new TestClass();\n' +
-        '    96 |\n' +
-        '    97 |    testClass.someFunc();\n' +
-        '    98 |    TestClass.staticFunc();\n' +
-        '    99 |\n' +
-        '   100 |    obj.func();',
+it('Should create and render callsite records with "noColor" renderer', function () {
+    assert.deepEqual(createFrames(true, renderers.noColor), expectedNoColor);
 
-
-        '    92 |\n' +
-        '    93 |    /* Multiline\n' +
-        '    94 |         comment*/\n' +
-        '    95 |    var testClass = new TestClass();\n' +
-        '    96 |\n' +
-        ' >  97 |    testClass.someFunc();\n' +
-        '    98 |    TestClass.staticFunc();\n' +
-        '    99 |\n' +
-        '   100 |    obj.func();\n' +
-        '   101 |\n' +
-        '   102 |    (function () {',
-
-
-        '    93 |    /* Multiline\n' +
-        '    94 |         comment*/\n' +
-        '    95 |    var testClass = new TestClass();\n' +
-        '    96 |\n' +
-        '    97 |    testClass.someFunc();\n' +
-        ' >  98 |    TestClass.staticFunc();\n' +
-        '    99 |\n' +
-        '   100 |    obj.func();\n' +
-        '   101 |\n' +
-        '   102 |    (function () {\n' +
-        '   103 |        regularFunc2();',
-
-
-        '    95 |    var testClass = new TestClass();\n' +
-        '    96 |\n' +
-        '    97 |    testClass.someFunc();\n' +
-        '    98 |    TestClass.staticFunc();\n' +
-        '    99 |\n' +
-        ' > 100 |    obj.func();\n' +
-        '   101 |\n' +
-        '   102 |    (function () {\n' +
-        '   103 |        regularFunc2();\n' +
-        '   104 |    })();\n' +
-        '   105 |',
-
-
-        '    98 |    TestClass.staticFunc();\n' +
-        '    99 |\n' +
-        '   100 |    obj.func();\n' +
-        '   101 |\n' +
-        '   102 |    (function () {\n' +
-        ' > 103 |        regularFunc2();\n' +
-        '   104 |    })();\n' +
-        '   105 |\n' +
-        '   106 |    [\'test\'].forEach(regularFunc2);\n' +
-        '   107 |\n' +
-        '   108 |    return frames;',
-
-
-        '   101 |\n' +
-        '   102 |    (function () {\n' +
-        '   103 |        regularFunc2();\n' +
-        '   104 |    })();\n' +
-        '   105 |\n' +
-        ' > 106 |    [\'test\'].forEach(regularFunc2);\n' +
-        '   107 |\n' +
-        '   108 |    return frames;\n' +
-        '   109 |};\n' +
-        '   110 |\n' +
-        '   111 |'
-    ]);
+    return Promise.all(createFrames(false, renderers.noColor))
+        .then(function (rendered) {
+            assert.deepEqual(rendered, expectedNoColor);
+        });
 });

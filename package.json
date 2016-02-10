@@ -2,7 +2,7 @@
   "name": "callsite-view",
   "version": "1.0.0",
   "description": "Create fancy function call site views for the logging purposes.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
@@ -10,7 +10,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "eslint index.js test && mocha"
+    "test": "eslint lib test && mocha"
   },
   "repository": {
     "type": "git",
@@ -38,8 +38,10 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "chalk": "^1.1.1",
+    "defaults": "^1.0.3",
     "esutils": "^2.0.2",
     "js-tokens": "^1.0.2",
-    "left-pad": "0.0.4"
+    "left-pad": "0.0.4",
+    "pinkie-promise": "^2.0.0"
   }
 }

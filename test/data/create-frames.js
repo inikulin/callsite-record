@@ -1,8 +1,8 @@
 'use strict';
 
-var callsiteFrame = require('../');
+var CallsiteRecord = require('../../lib');
 
-module.exports = function createFrames (decorator, frameSize) {
+module.exports = function createFrames (sync, renderer, frameSize) {
     // -------------
     function TestClass () {
         addFrame('constructor', 'TestClass');
@@ -33,13 +33,13 @@ module.exports = function createFrames (decorator, frameSize) {
     var frames = [];
 
     function addFrame (fnName, typeName) {
-        frames.push(callsiteFrame(fnName, typeName, decorator, frameSize));
+        var record = new CallsiteRecord(fnName, typeName);
+        var opts   = { renderer: renderer, frameSize: frameSize };
+
+        frames.push(sync ? record.renderSync(opts) : record.render(opts));
     }
 
     // NOTE: add blank lines to reach 3-digit line numbers
-    // ***************************************************
-    // ***************************************************
-    // ***************************************************
     // ***************************************************
     // ***************************************************
     // ***************************************************
