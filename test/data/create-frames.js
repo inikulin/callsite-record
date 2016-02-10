@@ -107,4 +107,3 @@ module.exports = function createFrames (sync, renderer, frameSize) {
 
     return frames;
 };
-
