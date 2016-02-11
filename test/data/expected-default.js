@@ -57,7 +57,7 @@ module.exports = [
     '\u001b[41m > 103 \u001b[49m|        regularFunc2\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   104 |    \u001b[90m}\u001b[39m\u001b[90m)\u001b[39m\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   105 |\n' +
-    '   106 |    \u001b[90m[\u001b[39m\u001b[32m\'test\'\u001b[39m\u001b[90m]\u001b[39m\u001b[90m.\u001b[39mforEach\u001b[90m(\u001b[39mregularFunc2\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
+    '   106 |    \u001b[90m[\u001b[39m\u001b[32m\'&test&\'\u001b[39m\u001b[90m]\u001b[39m\u001b[90m.\u001b[39mforEach\u001b[90m(\u001b[39mregularFunc2\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   107 |\n' + '   108 |    \u001b[36mreturn\u001b[39m frames\u001b[90m;\u001b[39m',
 
 
@@ -66,7 +66,7 @@ module.exports = [
     '   103 |        regularFunc2\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   104 |    \u001b[90m}\u001b[39m\u001b[90m)\u001b[39m\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   105 |\n' +
-    '\u001b[41m > 106 \u001b[49m|    \u001b[90m[\u001b[39m\u001b[32m\'test\'\u001b[39m\u001b[90m]\u001b[39m\u001b[90m.\u001b[39mforEach\u001b[90m(\u001b[39mregularFunc2\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
+    '\u001b[41m > 106 \u001b[49m|    \u001b[90m[\u001b[39m\u001b[32m\'&test&\'\u001b[39m\u001b[90m]\u001b[39m\u001b[90m.\u001b[39mforEach\u001b[90m(\u001b[39mregularFunc2\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '   107 |\n' + '   108 |    \u001b[36mreturn\u001b[39m frames\u001b[90m;\u001b[39m\n' +
     '   109 |\u001b[90m}\u001b[39m\u001b[90m;\u001b[39m\n' + '   110 |'
 ];

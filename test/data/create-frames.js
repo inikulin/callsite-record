@@ -103,7 +103,7 @@ module.exports = function createFrames (sync, renderer, frameSize) {
         regularFunc2();
     })();
 
-    ['test'].forEach(regularFunc2);
+    ['&test&'].forEach(regularFunc2);
 
     return frames;
 };

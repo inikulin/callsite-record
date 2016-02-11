@@ -39,9 +39,12 @@
     "callsite": "^1.0.0",
     "chalk": "^1.1.1",
     "defaults": "^1.0.3",
+    "escape-html": "^1.0.3",
+    "identity-function": "^1.0.0",
     "is-es2016-keyword": "^1.0.0",
     "js-tokens": "^1.0.2",
     "left-pad": "0.0.4",
+    "noop-fn": "^1.0.0",
     "pinkie-promise": "^2.0.0"
   }
 }
