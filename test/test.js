@@ -7,6 +7,7 @@ var renderers       = require('..').renderers;
 var createFrames    = require('./data/create-frames');
 var expectedDefault = require('./data/expected-default');
 var expectedNoColor = require('./data/expected-no-color');
+var expectedHtml    = require('./data/expected-html');
 
 it('Should create and render callsite records with "default" renderer', function () {
     assert.deepEqual(createFrames(true), expectedDefault);
@@ -27,11 +28,11 @@ it('Should create and render callsite records with "noColor" renderer', function
 });
 
 it('Should create and render callsite records with "html" renderer', function () {
-    assert.deepEqual(createFrames(true, renderers.html), expectedNoColor);
+    assert.deepEqual(createFrames(true, renderers.html), expectedHtml);
 
     return Promise.all(createFrames(false, renderers.html))
         .then(function (rendered) {
-            assert.deepEqual(rendered, expectedNoColor);
+            assert.deepEqual(rendered, expectedHtml);
         });
 });
 
