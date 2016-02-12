@@ -10,6 +10,11 @@ var expectedNoColor = require('./data/expected-no-color');
 var expectedHtml    = require('./data/expected-html');
 
 it('Should create and render callsite records with "default" renderer', function () {
+    createFrames(true).forEach(function (frame) {
+        console.log(frame + '\n\n');
+    });
+
+
     assert.deepEqual(createFrames(true), expectedDefault);
 
     return Promise.all(createFrames(false))
