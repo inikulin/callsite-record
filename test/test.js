@@ -22,6 +22,11 @@ function renderRecords (sync, opts) {
     return sync ? rendered : Promise.all(rendered);
 }
 
+function stackFilter (frame, idx) {
+    // NOTE: keep only frames that relates to the project files
+    return idx < 2;
+}
+
 it('Should create and render callsite records with "default" renderer', function () {
     var opts = { stack: false };
 
@@ -35,8 +40,8 @@ it('Should create and render callsite records with "default" renderer', function
 
 it('Should create and render callsite records with "noColor" renderer', function () {
     var opts = {
-        renderer: renderers.noColor,
-        stack:    false
+        renderer:    renderers.noColor,
+        stackFilter: stackFilter
     };
 
     assert.deepEqual(renderRecords(true, opts), expectedNoColor);
