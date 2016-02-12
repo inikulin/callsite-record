@@ -3,39 +3,59 @@ require('chalk').enabled = true;
 
 var assert          = require('assert');
 var Promise         = require('pinkie-promise');
-var renderers       = require('..').renderers;
-var createFrames    = require('./data/create-frames');
+var CallsiteRecord  = require('..');
+var getRecords      = require('./data/get-records');
 var expectedDefault = require('./data/expected-default');
 var expectedNoColor = require('./data/expected-no-color');
 var expectedHtml    = require('./data/expected-html');
 
-it('Should create and render callsite records with "default" renderer', function () {
-    createFrames(true).forEach(function (frame) {
-        console.log(frame + '\n\n');
+var records   = getRecords();
+var renderers = CallsiteRecord.renderers;
+
+function renderRecords (sync, opts) {
+    var rendered = records.map(function (record) {
+        var render = sync ? CallsiteRecord.prototype.renderSync : CallsiteRecord.prototype.render;
+
+        return render.call(record, opts);
     });
 
+    return sync ? rendered : Promise.all(rendered);
+}
 
-    assert.deepEqual(createFrames(true), expectedDefault);
+it('Should create and render callsite records with "default" renderer', function () {
+    var opts = { stack: false };
 
-    return Promise.all(createFrames(false))
+    assert.deepEqual(renderRecords(true, opts), expectedDefault);
+
+    return renderRecords(false, opts)
         .then(function (rendered) {
             assert.deepEqual(rendered, expectedDefault);
         });
 });
 
 it('Should create and render callsite records with "noColor" renderer', function () {
-    assert.deepEqual(createFrames(true, renderers.noColor), expectedNoColor);
+    var opts = {
+        renderer: renderers.noColor,
+        stack:    false
+    };
 
-    return Promise.all(createFrames(false, renderers.noColor))
+    assert.deepEqual(renderRecords(true, opts), expectedNoColor);
+
+    return renderRecords(false, opts)
         .then(function (rendered) {
             assert.deepEqual(rendered, expectedNoColor);
         });
 });
 
 it('Should create and render callsite records with "html" renderer', function () {
-    assert.deepEqual(createFrames(true, renderers.html), expectedHtml);
+    var opts = {
+        renderer: renderers.html,
+        stack:    false
+    };
 
-    return Promise.all(createFrames(false, renderers.html))
+    assert.deepEqual(renderRecords(true, opts), expectedHtml);
+
+    return renderRecords(false, opts)
         .then(function (rendered) {
             assert.deepEqual(rendered, expectedHtml);
         });

@@ -61,7 +61,7 @@ module.exports = [
     '   105 |\n' +
     '   106 |    [\'&test&\'].forEach(regularFunc2);\n' +
     '   107 |\n' +
-    '   108 |    return frames;',
+    '   108 |    return records;',
 
 
     '   101 |\n' +
@@ -71,7 +71,7 @@ module.exports = [
     '   105 |\n' +
     ' > 106 |    [\'&test&\'].forEach(regularFunc2);\n' +
     '   107 |\n' +
-    '   108 |    return frames;\n' +
+    '   108 |    return records;\n' +
     '   109 |};\n' +
     '   110 |'
 ];

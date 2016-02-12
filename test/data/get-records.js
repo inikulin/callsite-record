@@ -2,7 +2,7 @@
 
 var CallsiteRecord = require('../../lib');
 
-module.exports = function createFrames (sync, renderer, frameSize) {
+module.exports = function getRecords () {
     // -------------
     function TestClass () {
         addFrame('constructor', 'TestClass');
@@ -30,16 +30,16 @@ module.exports = function createFrames (sync, renderer, frameSize) {
         regularFunc1();
     }
 
-    var frames = [];
+    var records = [];
 
     function addFrame (fnName, typeName) {
-        var record = new CallsiteRecord(fnName, typeName);
-        var opts   = { renderer: renderer, frameSize: frameSize };
-
-        frames.push(sync ? record.renderSync(opts) : record.render(opts));
+        records.push(new CallsiteRecord(fnName, typeName));
     }
 
     // NOTE: add blank lines to reach 3-digit line numbers
+    // ***************************************************
+    // ***************************************************
+    // ***************************************************
     // ***************************************************
     // ***************************************************
     // ***************************************************
@@ -105,5 +105,5 @@ module.exports = function createFrames (sync, renderer, frameSize) {
 
     ['&test&'].forEach(regularFunc2);
 
-    return frames;
+    return records;
 };
