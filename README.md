@@ -1,12 +1,12 @@
-# callsite-view
-[![Build Status](https://api.travis-ci.org/inikulin/callsite-view.svg)](https://travis-ci.org/inikulin/callsite-view)
+# callsite-record
+[![Build Status](https://api.travis-ci.org/inikulin/callsite-record.svg)](https://travis-ci.org/inikulin/callsite-record)
 
-*Create fancy function call site views for the logging purposes.*
+*Create fancy function call site records for the logging purposes.*
 
 
 ## Install
 ```
-npm install callsite-view
+npm install callsite-record
 ```
 
 ## Usage
