@@ -1,15 +1,18 @@
 // NOTE: enable chalk before any dependency is loaded
 require('chalk').enabled = true;
 
-var assert          = require('assert');
-var Promise         = require('pinkie-promise');
-var renderers       = require('..').renderers;
-var getRecords      = require('./data/get-records');
-var expectedDefault = require('./data/expected-default');
-var expectedNoColor = require('./data/expected-no-color');
-var expectedHtml    = require('./data/expected-html');
+var assert               = require('assert');
+var Promise              = require('pinkie-promise');
+var createCallsiteRecord = require('..');
+var getRecords           = require('./data/get-records');
+var smallFrameRecord     = require('./data/small-frame');
+var expectedDefault      = require('./data/expected-default');
+var expectedNoColor      = require('./data/expected-no-color');
+var expectedHtml         = require('./data/expected-html');
 
 var records = getRecords();
+
+var renderers = createCallsiteRecord.renderers;
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
@@ -65,3 +68,43 @@ it('Should create and render callsite records with "html" renderer', function ()
         });
 });
 
+it('Should provide option that changes code frame size', function () {
+    var expected = ' > 95 |    var testClass = new TestClass();';
+
+    var opts = {
+        renderer:  renderers.noColor,
+        frameSize: 0,
+        stack:     false
+    };
+
+    assert.strictEqual(records[0].renderSync(opts), expected);
+
+    expected = '   93 |    /* Multiline\n' +
+               '   94 |         comment*/\n' +
+               ' > 95 |    var testClass = new TestClass();\n' +
+               '   96 |\n' +
+               '   97 |    testClass.someFunc();';
+
+    opts.frameSize = 2;
+
+    assert.strictEqual(records[0].renderSync(opts), expected);
+});
+
+it('Should gracefully handle frames with the excessive size', function () {
+    var expected = '   1 |(function testFn () {\n' +
+                   '   2 |    module.exports = require(\'../../lib\')(\'testFn\');\n' +
+                   ' > 3 |})();\n' +
+                   '   4 |';
+
+    var opts = {
+        renderer:  renderers.noColor,
+        frameSize: 10,
+        stack:     false
+    };
+
+    assert.strictEqual(smallFrameRecord.renderSync(opts), expected);
+});
+
+it('Should return `null` if callsite does not exists', function () {
+    assert.strictEqual(createCallsiteRecord('yoTest123'), null);
+});
