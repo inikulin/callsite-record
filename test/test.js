@@ -3,18 +3,17 @@ require('chalk').enabled = true;
 
 var assert          = require('assert');
 var Promise         = require('pinkie-promise');
-var CallsiteRecord  = require('..');
+var renderers       = require('..').renderers;
 var getRecords      = require('./data/get-records');
 var expectedDefault = require('./data/expected-default');
 var expectedNoColor = require('./data/expected-no-color');
 var expectedHtml    = require('./data/expected-html');
 
-var records   = getRecords();
-var renderers = CallsiteRecord.renderers;
+var records = getRecords();
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
-        var render = sync ? CallsiteRecord.prototype.renderSync : CallsiteRecord.prototype.render;
+        var render = sync ? record.renderSync : record.render;
 
         return render.call(record, opts);
     });

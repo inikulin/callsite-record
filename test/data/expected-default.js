@@ -16,7 +16,7 @@ module.exports = [
     '   100 |    obj\u001b[90m.\u001b[39mfunc\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':95:21\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:17\u001b[24m\u001b[39m)',
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:15\u001b[24m\u001b[39m)',
 
 
     '    92 |\n' + '    93 |    \u001b[90m\u001b[1m/* Multiline\u001b[22m\u001b[39m\n' +
@@ -31,7 +31,7 @@ module.exports = [
     '   102 |    \u001b[90m(\u001b[39m\u001b[36mfunction\u001b[39m \u001b[90m(\u001b[39m\u001b[90m)\u001b[39m \u001b[90m{\u001b[39m\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':97:15\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:17\u001b[24m\u001b[39m)',
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:15\u001b[24m\u001b[39m)',
 
 
     '    93 |    \u001b[90m\u001b[1m/* Multiline\u001b[22m\u001b[39m\n' +
@@ -47,7 +47,7 @@ module.exports = [
     '   103 |        regularFunc2\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':98:15\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:17\u001b[24m\u001b[39m)',
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:15\u001b[24m\u001b[39m)',
 
 
     '    95 |    \u001b[36mvar\u001b[39m testClass \u001b[90m=\u001b[39m \u001b[36mnew\u001b[39m TestClass\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
@@ -63,7 +63,7 @@ module.exports = [
     '   105 |\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':100:9\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:17\u001b[24m\u001b[39m)',
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:15\u001b[24m\u001b[39m)',
 
 
     '    98 |    TestClass\u001b[90m.\u001b[39mstaticFunc\u001b[90m(\u001b[39m\u001b[90m)\u001b[39m\u001b[90m;\u001b[39m\n' +
@@ -92,5 +92,5 @@ module.exports = [
     '   110 |\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':106:16\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:17\u001b[24m\u001b[39m)'
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + testFile + ':12:15\u001b[24m\u001b[39m)'
 ];

@@ -1,6 +1,6 @@
 'use strict';
 
-var CallsiteRecord = require('../../lib');
+var recordCallsite = require('../../lib');
 
 module.exports = function getRecords () {
     // -------------
@@ -33,7 +33,7 @@ module.exports = function getRecords () {
     var records = [];
 
     function addFrame (fnName, typeName) {
-        records.push(new CallsiteRecord(fnName, typeName));
+        records.push(recordCallsite(fnName, typeName));
     }
 
     // NOTE: add blank lines to reach 3-digit line numbers
