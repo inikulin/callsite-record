@@ -28,7 +28,7 @@ function stackFilter (frame, idx) {
 }
 
 it('Should create and render callsite records with "default" renderer', function () {
-    var opts = { stack: false };
+    var opts = { stackFilter: stackFilter };
 
     assert.deepEqual(renderRecords(true, opts), expectedDefault);
 
