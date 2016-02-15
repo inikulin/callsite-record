@@ -54,8 +54,8 @@ it('Should create and render callsite records with "noColor" renderer', function
 
 it('Should create and render callsite records with "html" renderer', function () {
     var opts = {
-        renderer: renderers.html,
-        stack:    false
+        renderer:    renderers.html,
+        stackFilter: stackFilter
     };
 
     assert.deepEqual(renderRecords(true, opts), expectedHtml);
