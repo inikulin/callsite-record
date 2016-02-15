@@ -16,7 +16,7 @@ module.exports = [
     '   100 |    obj.func();\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':95:21)\n' +
-    '   at Object.<anonymous> (' + testFile + ':12:17)\n',
+    '   at Object.<anonymous> (' + testFile + ':12:17)',
 
 
     '    92 |\n' +
@@ -32,7 +32,7 @@ module.exports = [
     '   102 |    (function () {\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':97:15)\n' +
-    '   at Object.<anonymous> (' + testFile + ':12:17)\n',
+    '   at Object.<anonymous> (' + testFile + ':12:17)',
 
 
     '    93 |    /* Multiline\n' +
@@ -48,7 +48,7 @@ module.exports = [
     '   103 |        regularFunc2();\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':98:15)\n' +
-    '   at Object.<anonymous> (' + testFile + ':12:17)\n',
+    '   at Object.<anonymous> (' + testFile + ':12:17)',
 
 
     '    95 |    var testClass = new TestClass();\n' +
@@ -64,7 +64,7 @@ module.exports = [
     '   105 |\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':100:9)\n' +
-    '   at Object.<anonymous> (' + testFile + ':12:17)\n',
+    '   at Object.<anonymous> (' + testFile + ':12:17)',
 
     '    98 |    TestClass.staticFunc();\n' +
     '    99 |\n' +
@@ -79,7 +79,7 @@ module.exports = [
     '   108 |    return records;\n' +
     '\n' +
     '   at <anonymous> (' + getRecordsFile + ':103:9)\n' +
-    '   at getRecords (' + getRecordsFile + ':104:7)\n',
+    '   at getRecords (' + getRecordsFile + ':104:7)',
 
     '   101 |\n' +
     '   102 |    (function () {\n' +
@@ -93,5 +93,5 @@ module.exports = [
     '   110 |\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':106:16)\n' +
-    '   at Object.<anonymous> (' + testFile + ':12:17)\n'
+    '   at Object.<anonymous> (' + testFile + ':12:17)'
 ];
