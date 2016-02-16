@@ -51,34 +51,37 @@ const createCallsiteRecord = require('callsite-record');
 ```
 
 ### CallsiteRecord
-#### CallsiteRecord.render([renderOptions]) → String
+#### CallsiteRecord.render([renderOptions]) → Promise&lt;String&gt;
 Renders call site record to the string.
 
 *Example:*
 ```js
-console.log(record.render());
+record.render().then(str => console.log(str));
 ```
+
+#### CallsiteRecord.renderSync([renderOptions]) → String
+Sync version of the `CallsiteRecord.render`.
 
 ##### renderOptions.frameSize
 Specifies the number of lines rendered above and below the call site in the code frame. **Default:** `5`.
 
 *Example:*
 ```js
-console.log(record.render({ frameSize: 0 }));
+console.log(record.renderSync({ frameSize: 0 }));
 // > 12 |    func1();
 // ...
 
-console.log(record.render({ frameSize: 1 }));
+console.log(record.renderSync({ frameSize: 1 }));
 //   11 |(function func2() {
 // > 12 |    func1();
 //   13 |})();
 // ...
 ```
 
-#### renderOptions.stack
+##### renderOptions.stack
 Specifies if stack trace should be rendered in addition to the code frame. **Default:** `true`.
 
-#### renderOptions.stackFilter
+##### renderOptions.stackFilter
 Function that will be used to filter stack frames. Function accepts 2 arguments:
  - `stackFrame` - V8 [CallSite](https://github.com/v8/v8/wiki/Stack-Trace-API#customizing-stack-traces) object.
  - `idx` - index of the frame.
@@ -90,43 +93,44 @@ Function that will be used to filter stack frames. Function accepts 2 arguments:
 const sep = require('path').sep;
 
 // Remove node core lib calls from the stack trace
-record.render({ stackFilter: frame => frame.getFileName().indexOf(sep) > -1 });
+record.renderSync({ stackFilter: frame => frame.getFileName().indexOf(sep) > -1 });
 ```
 
-#### renderOptions.renderer
+##### renderOptions.renderer
 Specifies the output format of the rendering. **Default:** `renderers.default`. You can pass your own
 renderer object ([example implementations](https://github.com/inikulin/callsite-record/tree/master/lib/renderers)) or use
 one of the built-in renderers:
 
-##### renderers.default
+###### renderers.default
 Provides ANSI-colored output as shown above.
 
 *Usage:*
 ```js
 const defaultRenderer = require('callsite-record').renderers.default;
 
-record.render({ renderer: defaultRenderer });
+record.renderSync({ renderer: defaultRenderer });
 ```
 
-##### renderers.noColor
+###### renderers.noColor
 Same as `default` renderer but without colors.
 
 *Usage:*
 ```js
 const noColorRenderer = require('callsite-record').renderers.noColor;
 
-record.render({ renderer: noColorRenderer });
+record.renderSync({ renderer: noColorRenderer });
 ```
 
-##### renderers.html
+###### renderers.html
 Outputs HTML that can be later decorated with the CSS and embeded into the web page. [Example output](https://github.com/inikulin/callsite-record/blob/master/test/data/expected-html/0.html).
 
 *Usage:*
 ```js
 const htmlRenderer = require('callsite-record').renderers.html;
 
-record.render({ renderer: html });
+record.renderSync({ renderer: html });
 ```
+
 
 ## Related
  * [is-es2016-keyword](https://github.com/inikulin/is-es2016-keyword) - Determine if string is an ES2016 keyword.
