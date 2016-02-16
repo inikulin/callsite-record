@@ -51,7 +51,7 @@ const createCallsiteRecord = require('callsite-record');
 ```
 
 ### CallsiteRecord
-#### CallsiteRecord.render([renderOptions]) → String
+#### CallsiteRecord.render([renderOptions]) → Promise&lt;String&gt;
 Renders call site record to the string.
 
 *Example:*
@@ -127,6 +127,9 @@ const htmlRenderer = require('callsite-record').renderers.html;
 
 record.render({ renderer: html });
 ```
+
+#### CallsiteRecord.renderSync([renderOptions]) → String
+Sync version of the `CallsiteRecord.render`.
 
 ## Related
  * [is-es2016-keyword](https://github.com/inikulin/is-es2016-keyword) - Determine if string is an ES2016 keyword.
