@@ -1,6 +1,6 @@
 {
   "name": "callsite-record",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Create fancy call site records for any function up in the stack for the logging purposes.",
   "main": "lib/index.js",
   "directories": {
@@ -42,7 +42,7 @@
     "escape-html": "^1.0.3",
     "highlight-es": "^1.0.0",
     "identity-function": "^1.0.0",
-    "left-pad": "0.0.4",
+    "lodash": "^4.6.1",
     "noop-fn": "^1.0.0",
     "pinkie-promise": "^2.0.0"
   }
