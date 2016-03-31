@@ -1,11 +1,8 @@
 {
   "name": "callsite-record",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Create fancy call site records for any function up in the stack for the logging purposes.",
   "main": "lib/index.js",
-  "directories": {
-    "test": "test"
-  },
   "files": [
     "lib"
   ],
@@ -39,6 +36,7 @@
     "callsite": "^1.0.0",
     "chalk": "^1.1.1",
     "defaults": "^1.0.3",
+    "error-stack-parser": "^1.3.3",
     "escape-html": "^1.0.3",
     "highlight-es": "^1.0.0",
     "identity-function": "^1.0.0",

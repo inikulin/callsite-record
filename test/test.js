@@ -4,15 +4,14 @@ require('chalk').enabled = true;
 var assert               = require('assert');
 var Promise              = require('pinkie-promise');
 var createCallsiteRecord = require('..');
-var getRecords           = require('./data/get-records');
+var renderers            = require('..').renderers;
+var records              = require('./data/records');
 var smallFrameRecord     = require('./data/small-frame');
+var recordsFromError     = require('./data/from-error');
 var expectedDefault      = require('./data/expected-default');
 var expectedNoColor      = require('./data/expected-no-color');
 var expectedHtml         = require('./data/expected-html');
-
-var records = getRecords();
-
-var renderers = createCallsiteRecord.renderers;
+var expectedFromError    = require('./data/expected-from-error');
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
@@ -68,6 +67,17 @@ it('Should create and render callsite records with "html" renderer', function ()
         });
 });
 
+it('Should create and render callsite records from error', function () {
+    var rendered = recordsFromError.map(function (record) {
+        return record.renderSync({
+            renderer:    renderers.noColor,
+            stackFilter: stackFilter
+        });
+    });
+
+    assert.deepEqual(rendered, expectedFromError);
+});
+
 it('Should provide option that changes code frame size', function () {
     var expected = ' > 95 |    var testClass = new TestClass();';
 
@@ -104,6 +114,7 @@ it('Should gracefully handle frames with the excessive size', function () {
 
     assert.strictEqual(smallFrameRecord.renderSync(opts), expected);
 });
+
 
 it('Should return `null` if callsite does not exists', function () {
     assert.strictEqual(createCallsiteRecord('yoTest123'), null);
