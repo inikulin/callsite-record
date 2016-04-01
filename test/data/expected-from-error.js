@@ -31,8 +31,7 @@ module.exports = [
     '   35 |}\n' +
     '   36 |\n' +
     '\n' +
-    '   at Object.<anonymous> (' + file + ':31:11)\n' +
-    '   at Module._compile (module.js:435:26)',
+    '   at Object.<anonymous> (' + file + ':31:11)',
 
 
     '   18 |        addRecord(err);\n' +

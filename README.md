@@ -1,29 +1,56 @@
 # callsite-record
 [![Build Status](https://api.travis-ci.org/inikulin/callsite-record.svg)](https://travis-ci.org/inikulin/callsite-record)
 
-*Create fancy call site records for any function up in the stack for the logging purposes.*
+*Create fancy log entries for errors and function call sites.*
+
+**For Error:**
+```js
+'use strict';
+
+const createCallsiteRecord = require('callsite-record');
+
+function myFunc() {
+    throw new Error('Yo!');
+}
+
+try {
+    myFunc();
+}
+catch(err) {
+    console.log(createCallsiteRecord(err).renderSync());
+}
+
+```
+
+ ⬇
+
+![example](https://raw.githubusercontent.com/inikulin/callsite-record/master/media/example1.png)
+
+
+
+**For function call up in the stack:**
 
 ```js
 'use strict';
 
 const createCallsiteRecord = require('callsite-record');
 
-let record = null;
-
-function func1 () {
-    record = createCallsiteRecord('func1');
+function func2 () {
+    (function func1 () {
+        console.log(createCallsiteRecord('func2').renderSync());
+    })();
 }
 
-(function func2(){
-    func1();
-})();
-
-console.log(record.renderSync());
+func2();
 ```
 
  ⬇
 
-![example](https://raw.githubusercontent.com/inikulin/callsite-record/master/media/example.png)
+![example](https://raw.githubusercontent.com/inikulin/callsite-record/master/media/example2.png)
+
+**Additional goodies:**
+- Use [renderers](#renderoptionsrenderer) for different output formats, e.g. to produce output in HTML.
+- Use [stack filter](#renderoptionsstackfilter) to produce clean and beautiful stacks, e.g. removing Node lib internal calls.
 
 ## Install
 ```
@@ -83,8 +110,10 @@ Specifies if stack trace should be rendered in addition to the code frame. **Def
 
 ##### renderOptions.stackFilter
 Function that will be used to filter stack frames. Function accepts 2 arguments:
- - `stackFrame` - V8 [CallSite](https://github.com/v8/v8/wiki/Stack-Trace-API#customizing-stack-traces) object.
+ - `stackFrame` - stack entry.
  - `idx` - index of the frame.
+ - `isV8StackFrame` - if `true` then `stackFrame` is a V8 [CallSite](https://github.com/v8/v8/wiki/Stack-Trace-API#customizing-stack-traces) object.
+ Otherwise it's a [StackFrame](https://github.com/stacktracejs/stackframe) object.
 
 **Default:** `null`.
 

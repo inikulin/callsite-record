@@ -2,6 +2,7 @@
 require('chalk').enabled = true;
 
 var assert               = require('assert');
+var sep                  = require('path').sep;
 var Promise              = require('pinkie-promise');
 var createCallsiteRecord = require('..');
 var renderers            = require('..').renderers;
@@ -25,7 +26,7 @@ function renderRecords (sync, opts) {
 
 function stackFilter (frame, idx) {
     // NOTE: keep only frames that relates to the project files
-    return idx < 2;
+    return idx < 2 && frame.getFileName().indexOf(sep) >= 0;
 }
 
 it('Should create and render callsite records with "default" renderer', function () {
