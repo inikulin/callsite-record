@@ -58,6 +58,21 @@ npm install callsite-record
 ```
 
 ## API
+### createCallsiteRecord(error) → CallsiteRecord
+
+Creates `CallsiteRecord` for `error`.
+
+*Example:*
+```js
+const createCallsiteRecord = require('callsite-record');
+
+try {
+    throw new Error("We're doomed");
+}
+catch(err) {
+    const record = createCallsiteRecord(err);
+}
+```
 
 ### createCallsiteRecord(functionName, [typeName]) → CallsiteRecord
 
