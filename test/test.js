@@ -8,6 +8,7 @@ var createCallsiteRecord = require('..');
 var renderers            = require('..').renderers;
 var records              = require('./data/records');
 var smallFrameRecord     = require('./data/small-frame');
+var memberRecord         = require('./data/member-record');
 var recordsFromError     = require('./data/from-error');
 var expectedDefault      = require('./data/expected-default');
 var expectedNoColor      = require('./data/expected-no-color');
@@ -119,4 +120,21 @@ it('Should gracefully handle frames with the excessive size', function () {
 
 it('Should return `null` if callsite does not exists', function () {
     assert.strictEqual(createCallsiteRecord('yoTest123'), null);
+});
+
+it('Should produce callsite for assigned member function', function () {
+    var expected = '   2 |\n' +
+                   '   3 |obj[\'testFn\'] = function () {\n' +
+                   '   4 |    module.exports = require(\'../../lib\')(\'testFn\');\n' +
+                   '   5 |};\n' +
+                   '   6 |\n' +
+                   ' > 7 |obj.testFn();\n' +
+                   '   8 |';
+
+    var opts = {
+        renderer: renderers.noColor,
+        stack:    false
+    };
+
+    assert.strictEqual(memberRecord.renderSync(opts), expected);
 });
