@@ -120,6 +120,9 @@ console.log(record.renderSync({ frameSize: 1 }));
 // ...
 ```
 
+##### renderOptions.codeFrame
+Specifies if code frame should be rendered. If disabled only stack will be rendered. **Default:** `true`.
+
 ##### renderOptions.stack
 Specifies if stack trace should be rendered in addition to the code frame. **Default:** `true`.
 

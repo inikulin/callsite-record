@@ -138,3 +138,19 @@ it('Should produce callsite for assigned member function', function () {
 
     assert.strictEqual(memberRecord.renderSync(opts), expected);
 });
+
+it("Should not render code frame if it's disabled", function () {
+    var expected = '\n\n   at Object.<anonymous> (testfile.js:7:5)';
+
+    var opts = {
+        renderer:    renderers.noColor,
+        stackFilter: stackFilter,
+        codeFrame:   false
+    };
+
+    var actual = memberRecord.renderSync(opts);
+
+    actual = actual.replace(require.resolve('./data/member-record'), 'testfile.js');
+
+    assert.strictEqual(actual, expected);
+});
