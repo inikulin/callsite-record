@@ -3,8 +3,8 @@ var join = require('path').join;
 var file = join(__dirname, './from-error.js');
 
 module.exports = [
-    '    6 |function addRecord (err, topFrameFilter) {\n' +
-    '    7 |    module.exports.push(createCallsiteRecord(err, topFrameFilter));\n' +
+    '    6 |function addRecord (err, isCallsiteFrame) {\n' +
+    '    7 |    module.exports.push(createCallsiteRecord(err, isCallsiteFrame));\n' +
     '    8 |}\n' +
     '    9 |\n' +
     '   10 |function func1 () {\n' +
@@ -74,7 +74,7 @@ module.exports = [
     ' > 59 |    throwError();\n' +
     '   60 |}\n' +
     '   61 |catch (err) {\n' +
-    '   62 |    addRecord(err, topFrameFilter);\n' +
+    '   62 |    addRecord(err, isNotThrowErrorStackFrame);\n' +
     '   63 |}\n' +
     '   64 |\n' +
     '\n' +

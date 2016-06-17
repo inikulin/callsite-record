@@ -58,9 +58,11 @@ npm install callsite-record
 ```
 
 ## API
-### createCallsiteRecord(error) → CallsiteRecord
+### createCallsiteRecord(error, [isCallsiteFrame]) → CallsiteRecord
 
-Creates `CallsiteRecord` for `error`.
+You can generate a callsite for any stack frame, not only the topmost one. Use the `isCallsiteFrame` function to select
+a frame. This function is called for each frame starting from the top. Return `true` for the desired frame to generate
+the callsite.
 
 *Example:*
 ```js

@@ -3,8 +3,8 @@ var throwError           = require('./throw-error');
 
 module.exports = [];
 
-function addRecord (err, topFrameFilter) {
-    module.exports.push(createCallsiteRecord(err, topFrameFilter));
+function addRecord (err, isCallsiteFrame) {
+    module.exports.push(createCallsiteRecord(err, isCallsiteFrame));
 }
 
 function func1 () {
@@ -49,7 +49,7 @@ catch (err) {
     addRecord(err);
 }
 
-function topFrameFilter (frame) {
+function isNotThrowErrorStackFrame (frame) {
     var filename = frame.getFileName();
 
     return !/throw-error\.js/.test(filename);
@@ -59,5 +59,5 @@ try {
     throwError();
 }
 catch (err) {
-    addRecord(err, topFrameFilter);
+    addRecord(err, isNotThrowErrorStackFrame);
 }
