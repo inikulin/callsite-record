@@ -1,9 +1,10 @@
 var createCallsiteRecord = require('../../lib');
+var throwError           = require('./throw-error');
 
 module.exports = [];
 
-function addRecord (err) {
-    module.exports.push(createCallsiteRecord(err));
+function addRecord (err, isCallsiteFrame) {
+    module.exports.push(createCallsiteRecord(err, isCallsiteFrame));
 }
 
 function func1 () {
@@ -46,4 +47,17 @@ try {
 }
 catch (err) {
     addRecord(err);
+}
+
+function isNotThrowErrorStackFrame (frame) {
+    var filename = frame.getFileName();
+
+    return !/throw-error\.js/.test(filename);
+}
+
+try {
+    throwError();
+}
+catch (err) {
+    addRecord(err, isNotThrowErrorStackFrame);
 }
