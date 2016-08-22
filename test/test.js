@@ -14,6 +14,7 @@ var expectedDefault      = require('./data/expected-default');
 var expectedNoColor      = require('./data/expected-no-color');
 var expectedHtml         = require('./data/expected-html');
 var expectedFromError    = require('./data/expected-from-error');
+var error                = require('./data/error');
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
@@ -153,4 +154,8 @@ it("Should not render code frame if it's disabled", function () {
     actual = actual.replace(require.resolve('./data/member-record'), 'testfile.js');
 
     assert.strictEqual(actual, expected);
+});
+
+it('Should return `null` if error raised during callsite creation', function () {
+    assert.strictEqual(createCallsiteRecord(new error.NestedCustomError()), null);
 });
