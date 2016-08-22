@@ -1,13 +1,15 @@
 {
   "name": "callsite-record",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Create fancy log entries for errors and function call sites.",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "eslint lib test && mocha"
+    "test": "eslint lib test && mocha",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,8 @@
   "homepage": "https://github.com/inikulin/source-frame#readme",
   "devDependencies": {
     "eslint": "^1.10.3",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "publish-please": "^2.2.0"
   },
   "dependencies": {
     "callsite": "^1.0.0",

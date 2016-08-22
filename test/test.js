@@ -154,3 +154,17 @@ it("Should not render code frame if it's disabled", function () {
 
     assert.strictEqual(actual, expected);
 });
+
+describe('Regression', function () {
+    it('Should return `null` if error stack can not be parsed (GH-5)', function () {
+        var error = new Error('Hey!');
+
+        error.stack = null;
+
+        assert.strictEqual(createCallsiteRecord(error), null);
+
+        error.stack = '42';
+
+        assert.strictEqual(createCallsiteRecord(error), null);
+    });
+});
