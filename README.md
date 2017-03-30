@@ -17,7 +17,7 @@ try {
     myFunc();
 }
 catch(err) {
-    console.log(createCallsiteRecord(err).renderSync());
+    console.log(createCallsiteRecord({ forError: err }).renderSync());
 }
 
 ```
@@ -37,7 +37,7 @@ const createCallsiteRecord = require('callsite-record');
 
 function func2 () {
     (function func1 () {
-        console.log(createCallsiteRecord('func2').renderSync());
+        console.log(createCallsiteRecord({ byFunctionName: 'func2' }).renderSync());
     })();
 }
 
@@ -58,7 +58,7 @@ npm install callsite-record
 ```
 
 ## API
-### createCallsiteRecord(error, [isCallsiteFrame]) → CallsiteRecord
+### createCallsiteRecord( { forError, isCallsiteFrame }) → CallsiteRecord
 
 You can generate a callsite for any stack frame, not only the topmost one. Use the `isCallsiteFrame` function to select
 a frame. This function is called for each frame starting from the top. Return `true` for the desired frame to generate
@@ -72,14 +72,14 @@ try {
     throw new Error("We're doomed");
 }
 catch(err) {
-    const record = createCallsiteRecord(err);
+    const record = createCallsiteRecord({ forError: err });
 }
 ```
 
-### createCallsiteRecord(functionName, [typeName]) → CallsiteRecord
+### createCallsiteRecord({ byFunctionName, typeName, processFrameFn }) → CallsiteRecord
 
-Creates `CallsiteRecord` for the function up in the call stack specified by `functionName`. You can optionally specify a
-`typeName` if the function is a method. If the function is a constructor set `functionName` to `constructor`.
+Creates `CallsiteRecord` for the function up in the call stack specified by `byFunctionName`. You can optionally specify a
+`typeName` if the function is a method. If the function is a constructor set `byFunctionName` to `constructor`.
 
 *Example:*
 ```js
@@ -88,7 +88,24 @@ const createCallsiteRecord = require('callsite-record');
 (function func1() {
     (function func2() {
         (function func3() {
-            const record = createCallsiteRecord('func2');
+            const record = createCallsiteRecord({ byFunctionName: 'func2' });
+        })();
+    })();
+})();
+```
+
+You can specify `processFrameFn` function, which will process every frame in callstack. It's usefull when you need to 
+enable frame processing like `source-maps-support` or something other.
+
+*Example:*
+```js
+const createCallsiteRecord = require('callsite-record');
+const wrapCallSite         = require('source-map-support').wrapCallSite;
+
+(function func1() {
+    (function func2() {
+        (function func3() {
+            const record = createCallsiteRecord({ byFunctionName: 'func2', processFrameFn: wrapCallSite });
         })();
     })();
 })();

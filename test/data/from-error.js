@@ -4,7 +4,7 @@ var throwError           = require('./throw-error');
 module.exports = [];
 
 function addRecord (err, isCallsiteFrame) {
-    module.exports.push(createCallsiteRecord(err, isCallsiteFrame));
+    module.exports.push(createCallsiteRecord({ forError: err, isCallsiteFrame: isCallsiteFrame }));
 }
 
 function func1 () {

@@ -33,7 +33,7 @@ module.exports = function getRecords () {
     var records = [];
 
     function addFrame (fnName, typeName) {
-        records.push(recordCallsite(fnName, typeName));
+        records.push(recordCallsite({ byFunctionName: fnName, typeName: typeName }));
     }
 
     // NOTE: add blank lines to reach 3-digit line numbers
