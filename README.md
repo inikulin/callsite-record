@@ -58,7 +58,7 @@ npm install callsite-record
 ```
 
 ## API
-### createCallsiteRecord( { forError, isCallsiteFrame }) → CallsiteRecord
+### createCallsiteRecord( { forError, isCallsiteFrame, processFrameFn }) → CallsiteRecord
 
 You can generate a callsite for any stack frame, not only the topmost one. Use the `isCallsiteFrame` function to select
 a frame. This function is called for each frame starting from the top. Return `true` for the desired frame to generate
@@ -95,12 +95,19 @@ const createCallsiteRecord = require('callsite-record');
 ```
 
 You can specify `processFrameFn` function, which will process every frame in callstack. It's usefull when you need to 
-enable frame processing like `source-maps-support` or something other.
+enable frame processing like `source-maps-support`.
 
 *Example:*
 ```js
 const createCallsiteRecord = require('callsite-record');
 const wrapCallSite         = require('source-map-support').wrapCallSite;
+
+try {
+    throw new Error("We're doomed");
+}
+catch(err) {
+    const record = createCallsiteRecord({ forError: err, processFrameFn: wrapCallSite });
+}
 
 (function func1() {
     (function func2() {

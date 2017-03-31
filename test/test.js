@@ -1,20 +1,21 @@
 // NOTE: enable chalk before any dependency is loaded
 require('chalk').enabled = true;
 
-var assert               = require('assert');
-var sep                  = require('path').sep;
-var Promise              = require('pinkie-promise');
-var createCallsiteRecord = require('..');
-var renderers            = require('..').renderers;
-var records              = require('./data/records');
-var smallFrameRecord     = require('./data/small-frame');
-var memberRecord         = require('./data/member-record');
-var wrappedMemberRecord  = require('./data/wrapped-member-record');
-var recordsFromError     = require('./data/from-error');
-var expectedDefault      = require('./data/expected-default');
-var expectedNoColor      = require('./data/expected-no-color');
-var expectedHtml         = require('./data/expected-html');
-var expectedFromError    = require('./data/expected-from-error');
+var assert                  = require('assert');
+var sep                     = require('path').sep;
+var Promise                 = require('pinkie-promise');
+var createCallsiteRecord    = require('..');
+var renderers               = require('..').renderers;
+var records                 = require('./data/records');
+var smallFrameRecord        = require('./data/small-frame');
+var memberRecord            = require('./data/member-record');
+var wrappedMemberRecord     = require('./data/wrapped-member-record');
+var recordsFromError        = require('./data/from-error');
+var wrappedRecordsFromError = require('./data/wrapped-from-error');
+var expectedDefault         = require('./data/expected-default');
+var expectedNoColor         = require('./data/expected-no-color');
+var expectedHtml            = require('./data/expected-html');
+var expectedFromError       = require('./data/expected-from-error');
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
@@ -156,7 +157,7 @@ it("Should not render code frame if it's disabled", function () {
     assert.strictEqual(actual, expected);
 });
 
-it('Should produce wrapped callsite if "options.processFrameFn" is assigned', function () {
+it('Should produce wrapped callsite by function name if "options.processFrameFn" is assigned', function () {
     var expected = '   14 |    });\n' +
                    '   15 |};\n' +
                    '   16 |\n' +
@@ -171,6 +172,23 @@ it('Should produce wrapped callsite if "options.processFrameFn" is assigned', fu
     };
 
     assert.strictEqual(wrappedMemberRecord.renderSync(opts), expected);
+});
+
+it('Should produce wrapped callsite for error if "options.processFrameFn" is assigned', function () {
+    var expected = '   27 |            return frame;\n' +
+                   '   28 |        });\n' +
+                   '   29 |    }\n' +
+                   '   30 |})();\n' +
+                   '   31 |\n' +
+                   ' > 32 |// Yo!\n' +
+                   '   33 |';
+
+    var opts = {
+        renderer: renderers.noColor,
+        stack:    false
+    };
+
+    assert.strictEqual(wrappedRecordsFromError.renderSync(opts), expected);
 });
 
 describe('Regression', function () {
