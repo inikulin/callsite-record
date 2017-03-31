@@ -4,7 +4,7 @@ var file = join(__dirname, './from-error.js');
 
 module.exports = [
     '    6 |function addRecord (err, isCallsiteFrame) {\n' +
-    '    7 |    module.exports.push(createCallsiteRecord(err, isCallsiteFrame));\n' +
+    '    7 |    module.exports.push(createCallsiteRecord({ forError: err, isCallsiteFrame: isCallsiteFrame }));\n' +
     '    8 |}\n' +
     '    9 |\n' +
     '   10 |function func1 () {\n' +

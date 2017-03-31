@@ -1,19 +1,21 @@
 // NOTE: enable chalk before any dependency is loaded
 require('chalk').enabled = true;
 
-var assert               = require('assert');
-var sep                  = require('path').sep;
-var Promise              = require('pinkie-promise');
-var createCallsiteRecord = require('..');
-var renderers            = require('..').renderers;
-var records              = require('./data/records');
-var smallFrameRecord     = require('./data/small-frame');
-var memberRecord         = require('./data/member-record');
-var recordsFromError     = require('./data/from-error');
-var expectedDefault      = require('./data/expected-default');
-var expectedNoColor      = require('./data/expected-no-color');
-var expectedHtml         = require('./data/expected-html');
-var expectedFromError    = require('./data/expected-from-error');
+var assert                  = require('assert');
+var sep                     = require('path').sep;
+var Promise                 = require('pinkie-promise');
+var createCallsiteRecord    = require('..');
+var renderers               = require('..').renderers;
+var records                 = require('./data/records');
+var smallFrameRecord        = require('./data/small-frame');
+var memberRecord            = require('./data/member-record');
+var wrappedMemberRecord     = require('./data/wrapped-member-record');
+var recordsFromError        = require('./data/from-error');
+var wrappedRecordsFromError = require('./data/wrapped-from-error');
+var expectedDefault         = require('./data/expected-default');
+var expectedNoColor         = require('./data/expected-no-color');
+var expectedHtml            = require('./data/expected-html');
+var expectedFromError       = require('./data/expected-from-error');
 
 function renderRecords (sync, opts) {
     var rendered = records.map(function (record) {
@@ -104,7 +106,7 @@ it('Should provide option that changes code frame size', function () {
 
 it('Should gracefully handle frames with the excessive size', function () {
     var expected = '   1 |(function testFn () {\n' +
-                   '   2 |    module.exports = require(\'../../lib\')(\'testFn\');\n' +
+                   '   2 |    module.exports = require(\'../../lib\')({ byFunctionName: \'testFn\' });\n' +
                    ' > 3 |})();\n' +
                    '   4 |';
 
@@ -119,13 +121,13 @@ it('Should gracefully handle frames with the excessive size', function () {
 
 
 it('Should return `null` if callsite does not exists', function () {
-    assert.strictEqual(createCallsiteRecord('yoTest123'), null);
+    assert.strictEqual(createCallsiteRecord({ byFunctionName: 'yoTest123' }), null);
 });
 
 it('Should produce callsite for assigned member function', function () {
     var expected = '   2 |\n' +
                    '   3 |obj[\'testFn\'] = function () {\n' +
-                   '   4 |    module.exports = require(\'../../lib\')(\'testFn\');\n' +
+                   '   4 |    module.exports = require(\'../../lib\')({ byFunctionName: \'testFn\' });\n' +
                    '   5 |};\n' +
                    '   6 |\n' +
                    ' > 7 |obj.testFn();\n' +
@@ -155,16 +157,50 @@ it("Should not render code frame if it's disabled", function () {
     assert.strictEqual(actual, expected);
 });
 
+it('Should produce wrapped callsite by function name if "options.processFrameFn" is assigned', function () {
+    var expected = '   14 |    });\n' +
+                   '   15 |};\n' +
+                   '   16 |\n' +
+                   '   17 |obj.testFn();\n' +
+                   '   18 |\n' +
+                   ' > 19 |// Yo!\n' +
+                   '   20 |';
+
+    var opts = {
+        renderer: renderers.noColor,
+        stack:    false
+    };
+
+    assert.strictEqual(wrappedMemberRecord.renderSync(opts), expected);
+});
+
+it('Should produce wrapped callsite for error if "options.processFrameFn" is assigned', function () {
+    var expected = '   27 |            return frame;\n' +
+                   '   28 |        });\n' +
+                   '   29 |    }\n' +
+                   '   30 |})();\n' +
+                   '   31 |\n' +
+                   ' > 32 |// Yo!\n' +
+                   '   33 |';
+
+    var opts = {
+        renderer: renderers.noColor,
+        stack:    false
+    };
+
+    assert.strictEqual(wrappedRecordsFromError.renderSync(opts), expected);
+});
+
 describe('Regression', function () {
     it('Should return `null` if error stack can not be parsed (GH-5)', function () {
         var error = new Error('Hey!');
 
         error.stack = null;
 
-        assert.strictEqual(createCallsiteRecord(error), null);
+        assert.strictEqual(createCallsiteRecord({ forError: error }), null);
 
         error.stack = '42';
 
-        assert.strictEqual(createCallsiteRecord(error), null);
+        assert.strictEqual(createCallsiteRecord({ forError: error }), null);
     });
 });
