@@ -9,7 +9,7 @@ import { identity } from 'lodash';
 export interface RendererWithoutSyntax {
   codeFrame: typeof identity;
 
-  codeLine: (num: number, base: string, src: string, isLast) => string;
+  codeLine: (num: number, base: string, src: string, isLast: boolean) => string;
 
   stackLine: (name: string, location: string, isLast: boolean) => string;
 
