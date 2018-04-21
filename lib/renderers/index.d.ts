@@ -3,7 +3,7 @@
 // Definitions by: Alvis HT Tang <https://github.com/alvis>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import { ChalkChain } from 'chalk';
+import { Chalk } from 'chalk';
 import { identity } from 'lodash';
 
 export interface RendererWithoutSyntax {
@@ -18,13 +18,13 @@ export interface RendererWithoutSyntax {
 
 export interface RendererWithSyntax extends RendererWithoutSyntax {
   syntax: {
-    string: ChalkChain;
-    punctuator: ChalkChain;
-    keyword: ChalkChain;
-    number: ChalkChain;
-    regex: ChalkChain;
-    comment: ChalkChain;
-    invalid: ChalkChain;
+    string: Chalk;
+    punctuator: Chalk;
+    keyword: Chalk;
+    number: Chalk;
+    regex: Chalk;
+    comment: Chalk;
+    invalid: Chalk;
   };
 }
 
