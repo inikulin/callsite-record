@@ -3,13 +3,13 @@
 // Definitions by: Alvis HT Tang <https://github.com/alvis>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import 'error-stack-parser';
 import { Renderer, Renderers } from './renderers';
+import { StackFrameOptions } from 'stackframe';
 
 declare namespace createCallsiteRecord {
   const renderers: Renderers;
 
-  type StackFrame = ErrorStackParser.StackFrame;
+  type StackFrame = StackFrameOptions;
   type isCallSiteFrame = (stackFrame: StackFrame) => boolean;
   type processFrameFn = (stackFrame: StackFrame) => StackFrame;
   type stackFilter = (
