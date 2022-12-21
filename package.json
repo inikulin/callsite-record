@@ -1,6 +1,6 @@
 {
   "name": "callsite-record",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "description": "Create fancy log entries for errors and function call sites.",
   "main": "lib/index.js",
   "files": [
