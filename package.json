@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "@devexpress/error-stack-parser": "^2.0.6",
-    "@types/error-stack-parser": "^2.0.0",
     "@types/lodash": "^4.14.72",
     "callsite": "^1.0.0",
     "chalk": "^2.4.0",
