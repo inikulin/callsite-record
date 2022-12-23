@@ -33,7 +33,7 @@
   "homepage": "https://github.com/inikulin/source-frame#readme",
   "devDependencies": {
     "eslint": "^1.10.3",
-    "mocha": "^2.4.5",
+    "mocha": "^10.2.0",
     "publish-please": "^5.5.2"
   },
   "dependencies": {
