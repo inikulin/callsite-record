@@ -1,5 +1,5 @@
-// NOTE: enable chalk before any dependency is loaded
-require('chalk').enabled = true;
+// NOTE: enable color output for chalk before any dependency is loaded
+process.env.FORCE_COLOR = true;
 
 var assert                  = require('assert');
 var sep                     = require('path').sep;
@@ -29,7 +29,9 @@ function renderRecords (sync, opts) {
 
 function stackFilter (frame, idx) {
     // NOTE: keep only frames that relates to the project files
-    return idx < 2 && frame.getFileName().indexOf(sep) >= 0;
+    var fileName = frame.getFileName();
+
+    return idx < 2 && fileName.indexOf(sep) >= 0 && !fileName.match(/(node:)?internal/);
 }
 
 it('Should create and render callsite records with "default" renderer', function () {
