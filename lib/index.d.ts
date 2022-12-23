@@ -4,12 +4,12 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import { Renderer, Renderers } from './renderers';
-import { StackFrameOptions } from 'stackframe';
+import '@devexpress/error-stack-parser';
 
 declare namespace createCallsiteRecord {
   const renderers: Renderers;
 
-  type StackFrame = StackFrameOptions;
+  type StackFrame = StackFrame.StackFrameOptions;
   type isCallSiteFrame = (stackFrame: StackFrame) => boolean;
   type processFrameFn = (stackFrame: StackFrame) => StackFrame;
   type stackFilter = (

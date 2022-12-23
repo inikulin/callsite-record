@@ -85,5 +85,8 @@
   },
   "env": {
     "node": true
+  },
+  "globals": {
+    "URL": true
   }
 }
