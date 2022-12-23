@@ -8,7 +8,7 @@
   ],
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "eslint lib test && mocha -- --color",
+    "test": "eslint lib test && mocha --color",
     "publish-please": "publish-please",
     "prepublish": "publish-please guard"
   },
