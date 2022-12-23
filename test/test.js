@@ -29,7 +29,9 @@ function renderRecords (sync, opts) {
 
 function stackFilter (frame, idx) {
     // NOTE: keep only frames that relates to the project files
-    return idx < 2 && frame.getFileName().indexOf(sep) >= 0;
+    var fileName = frame.getFileName();
+
+    return idx < 2 && fileName.indexOf(sep) >= 0 && !fileName.startsWith('internal');
 }
 
 it('Should create and render callsite records with "default" renderer', function () {
