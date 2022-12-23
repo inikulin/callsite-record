@@ -1,5 +1,5 @@
 // NOTE: enable color output for chalk before any dependency is loaded
-process.env.FORCE_COLORS = true;
+process.env.FORCE_COLOR = true;
 
 var assert                  = require('assert');
 var sep                     = require('path').sep;
