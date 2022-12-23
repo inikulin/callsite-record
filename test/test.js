@@ -31,7 +31,7 @@ function stackFilter (frame, idx) {
     // NOTE: keep only frames that relates to the project files
     var fileName = frame.getFileName();
 
-    return idx < 2 && fileName.indexOf(sep) >= 0 && !fileName.startsWith('internal');
+    return idx < 2 && fileName.indexOf(sep) >= 0 && !fileName.match(/(node:)?internal/);
 }
 
 it('Should create and render callsite records with "default" renderer', function () {
