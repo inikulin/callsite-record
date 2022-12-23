@@ -20,7 +20,7 @@ jobs:
     strategy: 
       matrix:
         node-version: [14, 18]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: [build]
     environment: CI
     steps:
@@ -29,3 +29,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       
       - uses: DevExpress/testcafe-build-system/actions/test-npm@main
+        with:
+          task: "test --color"
