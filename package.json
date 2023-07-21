@@ -1,6 +1,6 @@
 {
   "name": "callsite-record",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "Create fancy log entries for errors and function call sites.",
   "main": "lib/index.js",
   "files": [
@@ -37,10 +37,10 @@
     "publish-please": "^5.5.2"
   },
   "dependencies": {
-    "@devexpress/error-stack-parser": "^2.0.6",
     "@types/lodash": "^4.14.72",
     "callsite": "^1.0.0",
     "chalk": "^2.4.0",
+    "error-stack-parser": "^2.1.4",
     "highlight-es": "^1.0.0",
     "lodash": "4.6.1 || ^4.16.1",
     "pinkie-promise": "^2.0.0"
