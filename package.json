@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/inikulin/source-frame#readme",
   "devDependencies": {
-    "eslint": "^1.10.3",
+    "eslint": "^8.46.0",
     "mocha": "^10.2.0",
     "publish-please": "^5.5.2"
   },
