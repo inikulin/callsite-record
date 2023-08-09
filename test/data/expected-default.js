@@ -92,5 +92,5 @@ module.exports = [
     '   110 |\n' +
     '\n' +
     '   at \u001b[1mgetRecords\u001b[22m (\u001b[90m\u001b[4m' + getRecordsFile + ':106:16\u001b[24m\u001b[39m)\n' +
-    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + recordsFile + ':13:15\u001b[24m\u001b[39m)'
+    '   at \u001b[1mObject.<anonymous>\u001b[22m (\u001b[90m\u001b[4m' + recordsFile + ':13:15\u001b[24m\u001b[39m)',
 ];

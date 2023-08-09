@@ -19,7 +19,7 @@ module.exports = function getRecords () {
     var obj = {
         func: function () {
             addFrame('func', 'Object');
-        }
+        },
     };
 
     function regularFunc1 () {

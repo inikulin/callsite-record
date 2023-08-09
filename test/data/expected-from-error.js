@@ -78,7 +78,7 @@ var LEGACY_NODE_CALLSITE = [
     '   63 |}\n' +
     '   64 |\n' +
     '\n' +
-    '   at Object.<anonymous> (' + file + ':59:5)'
+    '   at Object.<anonymous> (' + file + ':59:5)',
 ];
 
 var CALLSITE = [
@@ -157,7 +157,7 @@ var CALLSITE = [
     '   63 |}\n' +
     '   64 |\n' +
     '\n' +
-    '   at Object.<anonymous> (' + file + ':59:5)'
+    '   at Object.<anonymous> (' + file + ':59:5)',
 ];
 
 var NODE_VERSION = Number(process.versions.node.match(/^(\d+)\./)[1]);

@@ -1,0 +1,15 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    if: ${{ !github.event.release.draft }}
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: DevExpress/testcafe-build-system/actions/publish-with-publish-please@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}

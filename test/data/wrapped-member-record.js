@@ -10,7 +10,7 @@ obj['testFn'] = function () {
             };
 
             return frame;
-        }
+        },
     });
 };
 

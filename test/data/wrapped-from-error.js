@@ -4,7 +4,7 @@ function addRecord (err, isCallsiteFrame, processFrameFn) {
     module.exports = createCallsiteRecord({
         forError:        err,
         isCallsiteFrame: isCallsiteFrame,
-        processFrameFn:  processFrameFn
+        processFrameFn:  processFrameFn,
     });
 }
 

@@ -48,7 +48,7 @@ it('Should create and render callsite records with "default" renderer', function
 it('Should create and render callsite records with "noColor" renderer', function () {
     var opts = {
         renderer:    renderers.noColor,
-        stackFilter: stackFilter
+        stackFilter: stackFilter,
     };
 
     assert.deepEqual(renderRecords(true, opts), expectedNoColor);
@@ -62,7 +62,7 @@ it('Should create and render callsite records with "noColor" renderer', function
 it('Should create and render callsite records with "html" renderer', function () {
     var opts = {
         renderer:    renderers.html,
-        stackFilter: stackFilter
+        stackFilter: stackFilter,
     };
 
     assert.deepEqual(renderRecords(true, opts), expectedHtml);
@@ -77,7 +77,7 @@ it('Should create and render callsite records from error', function () {
     var rendered = recordsFromError.map(function (record) {
         return record.renderSync({
             renderer:    renderers.noColor,
-            stackFilter: stackFilter
+            stackFilter: stackFilter,
         });
     });
 
@@ -90,7 +90,7 @@ it('Should provide option that changes code frame size', function () {
     var opts = {
         renderer:  renderers.noColor,
         frameSize: 0,
-        stack:     false
+        stack:     false,
     };
 
     assert.strictEqual(records[0].renderSync(opts), expected);
@@ -115,7 +115,7 @@ it('Should gracefully handle frames with the excessive size', function () {
     var opts = {
         renderer:  renderers.noColor,
         frameSize: 10,
-        stack:     false
+        stack:     false,
     };
 
     assert.strictEqual(smallFrameRecord.renderSync(opts), expected);
@@ -137,7 +137,7 @@ it('Should produce callsite for assigned member function', function () {
 
     var opts = {
         renderer: renderers.noColor,
-        stack:    false
+        stack:    false,
     };
 
     assert.strictEqual(memberRecord.renderSync(opts), expected);
@@ -149,7 +149,7 @@ it("Should not render code frame if it's disabled", function () {
     var opts = {
         renderer:    renderers.noColor,
         stackFilter: stackFilter,
-        codeFrame:   false
+        codeFrame:   false,
     };
 
     var actual = memberRecord.renderSync(opts);
@@ -170,7 +170,7 @@ it('Should produce wrapped callsite by function name if "options.processFrameFn"
 
     var opts = {
         renderer: renderers.noColor,
-        stack:    false
+        stack:    false,
     };
 
     assert.strictEqual(wrappedMemberRecord.renderSync(opts), expected);
@@ -187,7 +187,7 @@ it('Should produce wrapped callsite for error if "options.processFrameFn" is ass
 
     var opts = {
         renderer: renderers.noColor,
-        stack:    false
+        stack:    false,
     };
 
     assert.strictEqual(wrappedRecordsFromError.renderSync(opts), expected);

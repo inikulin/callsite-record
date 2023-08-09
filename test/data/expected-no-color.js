@@ -93,5 +93,5 @@ module.exports = [
     '   110 |\n' +
     '\n' +
     '   at getRecords (' + getRecordsFile + ':106:16)\n' +
-    '   at Object.<anonymous> (' + recordsFile + ':13:15)'
+    '   at Object.<anonymous> (' + recordsFile + ':13:15)',
 ];
