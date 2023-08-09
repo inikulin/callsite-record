@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import { Renderer, Renderers } from './renderers';
-import '@devexpress/error-stack-parser';
+import 'error-stack-parser';
 
 declare namespace createCallsiteRecord {
   const renderers: Renderers;
