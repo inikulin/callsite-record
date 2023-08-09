@@ -31,6 +31,9 @@
     "url": "https://github.com/inikulin/source-frame/issues"
   },
   "homepage": "https://github.com/inikulin/source-frame#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "eslint": "^8.46.0",
     "mocha": "^10.2.0",
